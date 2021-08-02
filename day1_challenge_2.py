@@ -6,7 +6,7 @@ tlgclass= ["Adrian","Bikash","Chas","Chathula","Chris","Hongyi","Jauric","Joe L.
 
 icecream.append(99)
 
-user_choice = input("Who are you? Please input your either student ID or name: ").strip()
+user_choice = input("Who are you? Please input your either student ID (0-19) or name: ").strip()
 
 user_choice_validator = False
 
@@ -16,7 +16,7 @@ while not user_choice_validator:
     try:
         user_id = int(user_choice)
         
-        if user_id > len(tlgclass)-1:
+        if user_id > len(tlgclass)-1 or user_id < 0:
             user_choice = input("Bad ID. ID can not be greater than 19 or smaller than 0.")
         else:
             user_choice_validator = True
