@@ -20,4 +20,7 @@ What things are needed to install the software and how to install them. For now,
 
 ## Authors
 
-* **Your Name** - *Initial work* - [YourWebsite](https://example.com/)
+* **Peng CHen** - *Initial work* 
+
+##  Alta3 Python Instructors
+[Chad](https://github.com/csfeeser)
