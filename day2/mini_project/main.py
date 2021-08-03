@@ -26,12 +26,10 @@ def main():
     gussed_suit = None
 
     if guessed_color == 'red':
-        deck = [card for card in deck if card.suit == 'heart' or card.suit == 'diamond']
         gussed_suit = "heart" if question_suit("heart") == "yes" else "diamond"
 
 
     if guessed_color == 'black':
-        deck = [card for card in deck if card.suit == 'spade' or card.suit == 'club']
         gussed_suit = "spade" if question_suit("spade") == "yes" else "club"
 
 
