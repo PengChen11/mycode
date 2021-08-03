@@ -17,21 +17,57 @@ marvelchars= {
         "archenemy": "Titania"}
              }
 
+hero={'name':{'alias':'Batman','real name':'Bruce Wayne'},'background':{'origin':'Parents got murdered, got angry. Is super rich.','family':{'parents':'dead','siblings':None},'age':32,'number of deaths':19},'powers':['ninja training','money','batsuit'],'enemies':['joker','two face','scarecrow','poison ivy'],'allies':['cat woman','red robin','nightwing'],'rivals':['joker'],'weaknesses':['poverty','strict moral code']}
+def show_batman_details():
+    while True:
+        batman_stat = input(" What statistic do you want to know about Batman? (enemies, allies, rivals, powers, or weaknesses or exit)").strip().lower()
+
+        if batman_stat in hero.keys():
+            print(f"Batman's {batman_stat} are:")
+            for el in hero[batman_stat]:
+                print(el)
+
+        elif batman_stat == "exit":
+            quit()
+        else:
+            print("Bad Input! Please try again!")
+
+
+
 while True :
-    char_name = input("Which character do you want to know about? (Starlord, Mystique, She-Hulk)").strip().lower()
+    char_name = input("Which character do you want to know about? (Starlord, Mystique, She-Hulk, or exit)").strip().lower()
 
     if char_name.title() in marvelchars.keys():
         break;
+    elif char_name == "exit":
+        quit()
     else:
         print("Bad Input! Please try again!")
 
 
 while True:
-    char_stat = input(" What statistic do you want to know about? (real name, powers, archenemy)").strip().lower()
+    char_stat = input(" What statistic do you want to know about? (real name, powers, archenemy or exit)").strip().lower()
 
     if char_stat in marvelchars[char_name.title()].keys():
         break;
+    elif char_stat == "exit":
+        quit()
     else:
         print("Bad Input! Please try again!")
 
 print(f"{char_name.title()}'s {char_stat} is: {marvelchars[char_name.title()][char_stat]}")
+
+while True:
+    see_batman = input("Would you like to see Batman's details? ( yes or no )").strip().lower()
+    if see_batman == "no":
+        print("alright, bye-bye")
+        quit()
+
+    elif see_batman == "yes":
+        show_batman_details()
+
+    else:
+        print("Bad Input! Please try again!")
+
+
+
