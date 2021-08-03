@@ -36,9 +36,9 @@ def show_batman_details():
 
 
 while True :
-    char_name = input("\nWhich character do you want to know about? (Starlord, Mystique, She-Hulk, or exit)").strip().lower()
+    char_name = input("\nWhich character do you want to know about? (Starlord, Mystique, She-Hulk, or exit)").strip().title()
 
-    if char_name.title() in marvelchars.keys():
+    if char_name in marvelchars.keys():
         break;
     elif char_name == "exit":
         print("\nOk, Bye-bye")
