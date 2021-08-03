@@ -16,6 +16,7 @@ def main():
     Welcome to the game "Let me guess your card" ! In this this game, you will:
     1. Think about one Poker card in your mind (no Jokers).
     2. Answer the questions to let the AI guess what card is on your mind. AI will try 6 times to figure it out, or AI fails.
+    3. Type in "exit" to quit the game at any time.
 
     Now let's begin...
     """
@@ -32,6 +33,7 @@ def main():
     if guessed_color == 'black':
         deck = [card for card in deck if card.suit == 'spade' or card.suit == 'club']
         gussed_suit = "spade" if question_suit("spade") == "yes" else "club"
+
 
     deck = [card for card in deck if card.suit == gussed_suit]
 
