@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from deck import get_deck
-from questions import question_color
-from questions import question_suit
-from questions import question_value
-from game import win_game
-from game import lose_game
+from modules.deck import get_deck
+from modules.questions import question_color
+from modules.questions import question_suit
+from modules.questions import question_value
+from modules.game import win_game
+from modules.game import lose_game
 
 def main():
     deck = get_deck()

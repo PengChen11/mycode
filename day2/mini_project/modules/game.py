@@ -1,4 +1,4 @@
-from deck import printed_card
+from modules.deck import printed_card
 
 def win_game(card):
     print_card = printed_card(card)
