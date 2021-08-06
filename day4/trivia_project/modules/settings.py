@@ -8,6 +8,7 @@ settings = {
         "10 questions":10
     },
     "category":{
+        "Any" : 0,
         "General Knowledge" : 9,
         "Entertainment: Books" : 10,
         "Entertainment: Film" : 11,
@@ -34,11 +35,13 @@ settings = {
         "Vehicles":28,
     },
     "difficulty":{
+        "Any" : 0,
         "Easy": "easy",
         "Medium": "medium",
         "Hard": "hard"
     },
     "type":{
+        "Any" : 0,
         "Multiple Choice": "multiple",
         "True / False":"boolean"
     }

@@ -1,14 +1,15 @@
 import random
+from termcolor import colored
 
 def settings_question(setting, valid_selections_dict):
 
     key_list = list(valid_selections_dict.keys())
 
-    print(f"\nPlease select { 'number of questions' if setting == 'amount' else setting} : ")
+    print(colored(f"\nPlease select { 'number of questions' if setting == 'amount' else setting} : ", "green"))
 
     index = 1
     for selection in valid_selections_dict:
-        print(f"{index}. {selection}")
+        print(f"{colored(index, 'red')}. {selection}")
         index = index + 1
 
     answer = -1
@@ -16,31 +17,32 @@ def settings_question(setting, valid_selections_dict):
         try:
             answer = int(input("(enter a number here, or 0 to exit at any time):  "))
         except:
-            print('NOT a number, please select again! ')
-    choosed_key = key_list[answer - 1]
+            print(colored('NOT a number, please select again! ', 'red'))
+    choosed_key = key_list[answer - 2]
 
     if answer == 0:
         quit()
 
-    return valid_selections_dict[choosed_key]
+    if answer == 1 and setting == 'amount':
+        return valid_selections_dict[key_list[answer - 1]]
+
+    return valid_selections_dict[choosed_key] if answer != 1 else None
 
 
 def game_question(question_dict):
     question = question_dict["question"]
 
-    answer_pool = []
+    answer_pool = question_dict["incorrect_answers"]
     answer_pool.append(question_dict["correct_answer"])
-
-    for answer in question_dict["incorrect_answers"]:
-        answer_pool.append(answer)
 
     random.shuffle(answer_pool)
 
-    print(f"\nQuestion: {question} ")
-    print("\nPlease choose one from the following answers: ")
+    print(colored(f"\nQuestion: {question} ", "yellow") )
+    print(colored("\nPlease choose one from the following answers: ", "green"))
+
     index = 1
     for answer in answer_pool:
-        print(f"{index}. {answer}")
+        print(f"{colored(index, 'red')}. {answer}")
         index = index + 1
 
     user_answer = -1
@@ -48,7 +50,7 @@ def game_question(question_dict):
         try:
             user_answer = int(input("\n(enter a number here, or 0 to exit at any time):  "))
         except:
-            print('\nNOT a number, please select again! ')
+            print(colored('\nNOT a number, please select again! ', 'red'))
 
     if user_answer == 0:
         quit()
