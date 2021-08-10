@@ -5,6 +5,7 @@ from flask import redirect
 from flask import url_for
 from flask import request
 from flask import render_template
+import requests
 
 # Flask constructor takes the name of current
 # module (__name__) as argument
@@ -14,44 +15,43 @@ app = Flask(__name__)
 # decorator, tells the application which URL
 # should call the associated function
 @app.route("/")
-def hello_world():
-   return "Hello World"
+def home():
+   return render_template("home.html")
 
-@app.route("/hello/<name>")
-def hello_name(name):
-    return f"Hello {name}"
+@app.route("/getquestion", methods = ["POST"])
+def get_question():
+    amount_value = request.form.get("trivia_amount")
+    category_value = request.form.get("trivia_category")
+    difficulty_value = request.form.get("trivia_difficulty")
+    type_value = request.form.get("trivia_type")
 
-@app.route("/admin")
-def hello_admin():
-    return "Hello Admin"
+    requests_config = {
+        "amount" : None if amount_value == "any" else amount_value,
+        "category" : None if category_value == "any" else category_value,
+        "difficulty" : None if difficulty_value == "any" else difficulty_value,
+        "type": None if type_value == "any" else type_value
+    }
 
-@app.route("/guest/<guesty>")
-def hello_guest(guesty):
-    return f"Hello {guesty} Guest"
-    #V2 FORMATTER - return "Hello {} Guest".format(guesty)
-    #OLD FORMATTER - return "Hello %s as Guest" % guesty
+    # print(requests_config)
 
-@app.route("/user/<name>")
-def hello_user(name):
-    ## if you go to hello_user with a value of admin
-    if name =="admin":
-        # return a 302 response to redirect to /admin
-        return redirect(url_for("hello_admin"))
-    else:
-        # return a 302 response to redirect to /guest/<guesty>
-        return redirect(url_for("hello_guest",guesty = name))
+    url = "https://opentdb.com/api.php?"
 
-@app.route("/success/<name>")
-def success(name):
-    return f"Welcome {name}\n"
+    res = requests.get(url, params=requests_config)
 
-# This is a landing point for users (a start)
-# @app.route("/") # user can land at "/"
-@app.route("/start") # or user can land at "/start"
-def start():
-    return render_template("postmaker.html") # look for templates/postmaker.html
-# This is where postmaker.html POSTs data to
-# A user could also browser (GET) to this location
+    res_dict = res.json()
+    # return redirect(url_for("render_question"))
+
+    # print(res_dict["results"])
+    # print("#@#########",res_dict["results"][0]["qeustion"])
+    return render_template("question.html", results = res_dict["results"])
+
+@app.route("/question")
+def render_question():
+    return render_template("question.html")
+
+
+
+
 
 @app.route("/login", methods = ["POST", "GET"])
 def login():
